@@ -1,17 +1,19 @@
 package cn.lichenhui;
 
-import cn.lichenhui.service.HelloWorld;
+import cn.lichenhui.model.User;
+import cn.lichenhui.service.HelloWorldService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 import javax.annotation.PostConstruct;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 public class SpringBootApp {
 
     @Autowired
-    private HelloWorld helloWorld;
+    private HelloWorldService helloWorldService;
 
     public static void main( String[] args ) {
         SpringApplication.run(SpringBootApp.class);
@@ -19,6 +21,9 @@ public class SpringBootApp {
 
     @PostConstruct
     public void hello() {
-        helloWorld.printHello();
+        helloWorldService.printHello();
+        User user = helloWorldService.getUserById(1);
+        System.out.println(user.getName());
+        System.out.println(user.getPhone());
     }
 }

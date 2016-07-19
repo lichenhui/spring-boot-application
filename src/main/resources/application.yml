@@ -1,0 +1,29 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: spring-boot-application
+  datasource:
+    name: test-db
+    max-poolsize: 10
+    connect-timeout-ms: 3000
+    validate-timeout-ms: 3000
+
+---
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/lch_test?useSSL=false&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+    username: root
+    password: 123456
+---
+spring:
+  profiles: test
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/lch_test?useSSL=false&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+    username: root
+    password: 123456
+---
+spring:
+  profiles: prod
+  # run with --spring.config.location=/path/to/application.yml

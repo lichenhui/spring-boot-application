@@ -1,30 +1,23 @@
 package cn.lichenhui;
 
-import cn.lichenhui.model.User;
-import cn.lichenhui.service.HelloWorldService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
-import javax.annotation.PostConstruct;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 public class SpringBootApp {
 
-    @Autowired
-    private HelloWorldService helloWorldService;
+    private static final String EGD_KEY = "java.security.egd";
+    private static final String URANDOM = "/dev/urandom";
 
     public static void main( String[] args ) {
-        SpringApplication.run(SpringBootApp.class);
-    }
-
-    @PostConstruct
-    public void hello() {
-        helloWorldService.printHello();
-        helloWorldService.logHello();
-        User user = helloWorldService.getUserById(1);
-        System.out.println(user.getName());
-        System.out.println(user.getPhone());
+        if (Files.exists(Paths.get(URANDOM))) {
+            // make Tomcat startup faster
+            System.setProperty(EGD_KEY, "file://" + URANDOM);
+        }
+        SpringApplication.run(SpringBootApp.class, args);
     }
 }

@@ -22,6 +22,7 @@ public class SpringBootApp {
     @PostConstruct
     public void hello() {
         helloWorldService.printHello();
+        helloWorldService.logHello();
         User user = helloWorldService.getUserById(1);
         System.out.println(user.getName());
         System.out.println(user.getPhone());

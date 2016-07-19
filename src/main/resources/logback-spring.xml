@@ -12,4 +12,9 @@
             <appender-ref ref="Console" />
         </root>
     </springProfile>
+    <springProfile name="test,prod">
+        <root level="INFO">
+            <appender-ref ref="Console" />
+        </root>
+    </springProfile>
 </configuration>

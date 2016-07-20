@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import javax.sql.DataSource;
 
@@ -38,10 +37,5 @@ public class JdbcDataSource extends DataSourceProperties {
 	@Bean
 	public DataSource dataSource(HikariConfig conf) {
 		return new HikariDataSource(conf);
-	}
-
-	@Bean
-	public NamedParameterJdbcTemplate jdbcTemplate(DataSource dataSource) {
-		return new NamedParameterJdbcTemplate(dataSource);
 	}
 }

@@ -10,6 +10,8 @@ spring:
     max-poolsize: 10
     connect-timeout-ms: 3000
     validate-timeout-ms: 3000
+mybatis:
+  config-location: classpath:/mybatis-config.xml
 
 ---
 spring:

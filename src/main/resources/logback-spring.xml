@@ -11,6 +11,9 @@
         <root level="INFO">
             <appender-ref ref="Console" />
         </root>
+        <logger name="cn.lichenhui.dao" level="DEBUG" additivity="false" >
+            <appender-ref ref="Console" />
+        </logger>
     </springProfile>
     <springProfile name="test,prod">
         <root level="INFO">
